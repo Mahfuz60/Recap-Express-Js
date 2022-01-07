@@ -54,15 +54,23 @@ app.get("/students", (req, res) => {
 //post request
 app.post("/users", (req, res) => {
   const name = req.body.name;
-  const age=req.body.age;
-  const city=req.body.city;
+  const age = req.body.age;
+  const city = req.body.city;
   res.send(`Welcome to ${name},Your age ${age} and Your city ${city}`);
 });
+//Add Data to server
+app.get("/registration", (req, res) => {
+  res.sendFile(__dirname + "/registration.html");
+});
 
+app.post("/registration", (req, res) => {
+  const fullName = req.body.fullName;
+  const email = req.body.email;
+  res.send(`Name:${fullName} and Email:${email}`);
+});
+//Not found Route
 app.use((req, res) => {
   res.send("<h1>404!! Not a valid pages</h1>");
 });
-
-
 
 module.exports = app;
